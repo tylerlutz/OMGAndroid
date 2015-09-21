@@ -6,15 +6,22 @@ import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
     TextView mainTextView;
     Button mainButton;
     EditText mainEditText;
+    ListView mainListView;
+    ArrayAdapter mArrayAdapter;
+    ArrayList mNameList = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +36,12 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         mainEditText = (EditText) findViewById(R.id.main_edittext);
 
+        mainListView = (ListView) findViewById(R.id.main_listview);
+        mArrayAdapter = new ArrayAdapter(this,
+                android.R.layout.simple_list_item_1,
+                mNameList);
+        mainListView.setAdapter(mArrayAdapter);
+
     }
 
     @Override
@@ -42,5 +55,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         mainTextView.setText(mainEditText.getText().toString()
         + " is learning Android development!");
+
+        mNameList.add(mainEditText.getText().toString());
+        mArrayAdapter.notifyDataSetChanged();
     }
 }
