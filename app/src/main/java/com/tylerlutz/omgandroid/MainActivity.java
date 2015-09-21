@@ -2,16 +2,19 @@ package com.tylerlutz.omgandroid;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
     TextView mainTextView;
     Button mainButton;
+    EditText mainEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +27,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         mainButton = (Button) findViewById(R.id.main_button);
         mainButton.setOnClickListener(this);
 
+        mainEditText = (EditText) findViewById(R.id.main_edittext);
+
     }
 
     @Override
@@ -35,6 +40,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        mainTextView.setText("Button pressed!");
+        mainTextView.setText(mainEditText.getText().toString()
+        + " is learning Android development!");
     }
 }
